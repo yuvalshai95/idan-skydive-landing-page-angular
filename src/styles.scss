@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+// Fonts
+@import './assets/styles/fonts/fonts.scss';
+@import './assets/styles/functions/functions.scss';
+
+// Base
+@import './assets/styles/basics/basics.scss';
+@import './assets/styles/basics/buttons.scss';
+@import './assets/styles/basics/helpers.scss';
+@import './assets/styles/basics/layout.scss';
+@import './assets/styles/basics/colors.scss';
+@import './assets/styles/basics/material.scss';

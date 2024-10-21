@@ -1,0 +1,26 @@
+<header class="app-header">
+  <div class="screen-overlay" [ngClass]="{'open': isMenuOpen}" (click)="toggleMenu()"></div>
+
+  <section class="header-content main-layout">
+    <div class="logo-wrapper flex">
+      <a class="logo" href="#home"><img src="../../../assets/images/aa.jpg" alt="logo" /></a>
+      <p class="logo">קורס</p>
+    </div>
+
+    <div class="header-right flex">
+      <nav class="nav-container">
+        <ul class="nav-links clean-list" [ngClass]="{'open': isMenuOpen}">
+          <li><a href="#home" (click)="scrollToSection('home')">ראשי</a></li>
+          <li><a href="#about" (click)="scrollToSection('about')">אודות</a></li>
+          <li><a href="#locations" (click)="scrollToSection('locations')">מקומות</a></li>
+          <li><a href="#ratings" (click)="scrollToSection('ratings')">חוות דעת</a></li>
+          <li><a href="#contact" (click)="scrollToSection('contact')">צור קשר</a></li>
+        </ul>
+      </nav>
+    
+      <button class="hamburger-btn" (click)="toggleMenu()">
+        <mat-icon class="hamburger-icon">menu</mat-icon>
+      </button>
+    </div>
+  </section>
+</header>
