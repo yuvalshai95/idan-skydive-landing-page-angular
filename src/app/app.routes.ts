@@ -5,4 +5,8 @@ export const routes: Routes = [
     path: '',
     loadComponent: () => import('./pages/home/home.page.component').then((m) => m.HomepageComponent),
   },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];

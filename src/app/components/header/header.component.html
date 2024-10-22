@@ -1,26 +1,59 @@
-<header class="app-header">
-  <div class="screen-overlay" [ngClass]="{'open': isMenuOpen}" (click)="toggleMenu()"></div>
+<header role="banner" aria-label="Site Header">
+  <div class="screen-overlay" [ngClass]="{ open: isMenuOpen }" (click)="toggleMenu()" aria-hidden="true"></div>
 
-  <section class="header-content main-layout">
-    <div class="logo-wrapper flex">
-      <a class="logo" href="#home"><img src="../../../assets/images/aa.jpg" alt="logo" /></a>
-      <p class="logo">קורס</p>
+  <div class="top-header" role="complementary">
+    <div class="social-icons" aria-label="Social Media Links">
+      <a
+        href="https://instagram.com/your-handle"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Follow us on Instagram"
+      >
+        <mat-icon class="instagram-icon">message</mat-icon>
+      </a>
+      <a
+        href="https://wa.me/972528954775"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contact us on WhatsApp"
+      >
+        <mat-icon class="whatsapp-icon">message</mat-icon>
+      </a>
     </div>
 
-    <div class="header-right flex">
-      <nav class="nav-container">
-        <ul class="nav-links clean-list" [ngClass]="{'open': isMenuOpen}">
-          <li><a href="#home" (click)="scrollToSection('home')">ראשי</a></li>
-          <li><a href="#about" (click)="scrollToSection('about')">אודות</a></li>
-          <li><a href="#locations" (click)="scrollToSection('locations')">מקומות</a></li>
-          <li><a href="#ratings" (click)="scrollToSection('ratings')">חוות דעת</a></li>
-          <li><a href="#contact" (click)="scrollToSection('contact')">צור קשר</a></li>
-        </ul>
-      </nav>
-    
-      <button class="hamburger-btn" (click)="toggleMenu()">
-        <mat-icon class="hamburger-icon">menu</mat-icon>
-      </button>
+    <div class="logo-mobile">
+      <a href="/" aria-label="Idan-Skydive Home">
+        <img src="../../../assets/images/logo3.webp" alt="Idan-Skydive logo" width="150" height="50" loading="eager" />
+      </a>
     </div>
-  </section>
+
+    <div class="phone-container">
+      <a href="tel:+972528954775" class="phone-number-text" aria-label="Call us at 052-895-4775"> 052-895-4775 </a>
+      <mat-icon class="phone-icon" aria-hidden="true">phone</mat-icon>
+    </div>
+  </div>
+
+  <nav class="nav-container" role="navigation" aria-label="Main navigation">
+    <ul class="nav-links clean-list" [class.open]="isMenuOpen" role="menubar">
+      <li role="none">
+        <a href="#home" (click)="scrollToSection('home')" role="menuitem" aria-current="page"> ראשי </a>
+      </li>
+      <li role="none">
+        <a href="#about" (click)="scrollToSection('about')" role="menuitem"> אודות </a>
+      </li>
+      <li role="none">
+        <a href="#locations" (click)="scrollToSection('locations')" role="menuitem"> מקומות </a>
+      </li>
+      <li role="none">
+        <a href="#ratings" (click)="scrollToSection('ratings')" role="menuitem"> חוות דעת </a>
+      </li>
+      <li role="none">
+        <a href="#contact" (click)="scrollToSection('contact')" role="menuitem"> צור קשר </a>
+      </li>
+    </ul>
+
+    <button class="hamburger-btn" (click)="toggleMenu()" aria-label="Toggle navigation menu" aria-controls="nav-links">
+      <mat-icon class="hamburger-icon" aria-hidden="true">menu</mat-icon>
+    </button>
+  </nav>
 </header>
