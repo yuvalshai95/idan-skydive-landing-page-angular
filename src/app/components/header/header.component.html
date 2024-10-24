@@ -1,7 +1,7 @@
 <header role="banner" aria-label="Site Header">
   <div class="screen-overlay" [ngClass]="{ open: isMenuOpen }" (click)="toggleMenu()" aria-hidden="true"></div>
 
-  <div class="top-header" role="complementary">
+  <div class="top-header" role="Main header">
     <div class="social-icons" aria-label="Social Media Links">
       <a
         href="https://instagram.com/your-handle"
@@ -34,7 +34,7 @@
   </div>
 
   <nav class="nav-container" role="navigation" aria-label="Main navigation">
-    <ul class="nav-links clean-list" [class.open]="isMenuOpen" role="menubar">
+    <ul class="mobile-links nav-links clean-list" [class.open]="isMenuOpen" role="mobile-menubar">
       <li role="none">
         <a href="#home" (click)="scrollToSection('home')" role="menuitem" aria-current="page"> ראשי </a>
       </li>
@@ -49,6 +49,30 @@
       </li>
       <li role="none">
         <a href="#contact" (click)="scrollToSection('contact')" role="menuitem"> צור קשר </a>
+      </li>
+    </ul>
+
+    <ul class="desktop-nav-links-right clean-list" role="desktop-menubar">
+      <li role="none">
+        <a href="#home" (click)="scrollToSection('home')" role="menuitem" aria-current="page"> ראשי </a>
+      </li>
+      <li role="none">
+        <a href="#about" (click)="scrollToSection('about')" role="menuitem"> אודות </a>
+      </li>
+      <li role="none">
+        <a href="#locations" (click)="scrollToSection('locations')" role="menuitem"> מקומות </a>
+      </li>
+    </ul>
+
+    <ul class="desktop-nav-links-left clean-list" role="desktop-menubar">
+      <li role="none">
+        <a href="#home" (click)="scrollToSection('home')" role="menuitem" aria-current="page"> ראשי </a>
+      </li>
+      <li role="none">
+        <a href="#about" (click)="scrollToSection('about')" role="menuitem"> אודות </a>
+      </li>
+      <li role="none">
+        <a href="#locations" (click)="scrollToSection('locations')" role="menuitem"> מקומות </a>
       </li>
     </ul>
 

@@ -1,19 +1,22 @@
-$mobile-to-desktop-breakpoint: 768px;
+$mobile-to-tablet-breakpoint: 767px;
+$tablet-to-desktop-breakpoint: 1029px;
 // Mixins
-@mixin desktop {
-  @media (min-width: #{$mobile-to-desktop-breakpoint + 1px}) {
+@mixin tablet {
+  @media (min-width: #{$mobile-to-tablet-breakpoint + 1px}) {
     @content;
   }
 }
 
-// @include desktop {}
+@mixin desktop {
+  @media (min-width: #{$tablet-to-desktop-breakpoint + 1px}) {
+    @content;
+  }
+}
 
 :host {
   header {
     width: 100%;
   }
-
-  // @include desktop {}
 
   .top-header {
     display: flex;
@@ -52,6 +55,42 @@ $mobile-to-desktop-breakpoint: 768px;
         display: none;
       }
     }
+
+    // 768px breakpoint
+    @include tablet {
+      height: 100px;
+      padding: 0px 60px;
+
+      .phone-container {
+        line-height: 0;
+        padding-inline-start: 0px;
+        .phone-icon {
+          display: none;
+        }
+
+        .phone-number-text {
+          display: ruby-text;
+        }
+      }
+
+      .social-icons {
+        line-height: 0;
+        padding-inline-end: 0px;
+        flex-direction: row;
+        gap: 20px;
+      }
+
+      .logo-mobile {
+        img {
+          // margin: 30px -70px -40px -25px;
+          width: 18%;
+          height: auto;
+          position: absolute;
+          top: 0;
+          max-width: 160px;
+        }
+      }
+    }
   }
 
   .nav-container {
@@ -59,6 +98,15 @@ $mobile-to-desktop-breakpoint: 768px;
     align-items: center;
     height: 50px;
     background-color: red;
+    width: 100%;
+
+    &.fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000; // Ensure it stays above other content
+    }
 
     .nav-links {
       display: flex;
@@ -89,6 +137,11 @@ $mobile-to-desktop-breakpoint: 768px;
       }
     }
 
+    .desktop-nav-links-right,
+    .desktop-nav-links-left {
+      display: none;
+    }
+
     .hamburger-btn {
       background-color: transparent;
       border: none;
@@ -96,12 +149,34 @@ $mobile-to-desktop-breakpoint: 768px;
       padding: 10px 20px 10px 20px;
       color: var(--text-color);
       border-radius: 10px;
+    }
 
-      // !! hide for desktop !!
+    @include desktop {
+      .nav-links {
+        display: none;
+      }
 
-      // @media (min-width: 700px) {
-      //   display: none;
-      // }
+      .hamburger-btn {
+        display: none;
+      }
+
+      .desktop-nav-links-right {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: flex-start;
+        gap: 13%;
+        margin-inline-start: 20%;
+      }
+
+      .desktop-nav-links-left {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: flex-end;
+        gap: 13%;
+        margin-inline-end: 20%;
+      }
     }
   }
 
