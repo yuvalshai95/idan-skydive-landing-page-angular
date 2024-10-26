@@ -9,6 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { NAVIGATION_LINKS } from '../../constant/nvaigation-links';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,8 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class HeaderComponent implements OnInit {
   public isMenuOpen: boolean = false;
-  // Variable to track the top-header height
+  public navigationLinks = structuredClone(NAVIGATION_LINKS);
+
   private topHeaderHeight: number;
 
   @ViewChild('home') homeSection!: ElementRef;

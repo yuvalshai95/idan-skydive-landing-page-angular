@@ -1,0 +1,14 @@
+$mobile-to-tablet-breakpoint: 767px;
+$tablet-to-desktop-breakpoint: 1029px;
+// Mixins
+@mixin tablet {
+  @media (min-width: #{$mobile-to-tablet-breakpoint + 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$tablet-to-desktop-breakpoint + 1px}) {
+    @content;
+  }
+}

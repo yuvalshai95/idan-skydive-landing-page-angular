@@ -35,45 +35,57 @@
 
   <nav class="nav-container" role="navigation" aria-label="Main navigation">
     <ul class="mobile-links nav-links clean-list" [class.open]="isMenuOpen" role="mobile-menubar">
-      <li role="none">
-        <a href="#home" (click)="scrollToSection('home')" role="menuitem" aria-current="page"> ראשי </a>
+      <li class="mobile-link close-link" role="none">
+        <span (click)="toggleMenu()">X</span>
       </li>
-      <li role="none">
-        <a href="#about" (click)="scrollToSection('about')" role="menuitem"> אודות </a>
+      @for(navLink of navigationLinks; track navLink) {
+      <li class="mobile-link" role="none">
+        <a href="#{{ navLink.ref }}" (click)="scrollToSection(navLink.ref)" role="menuitem" aria-current="page">
+          {{ navLink.name }}
+        </a>
+        <mat-icon class="link-icon" aria-hidden="true">{{ navLink.icon }}</mat-icon>
       </li>
-      <li role="none">
-        <a href="#locations" (click)="scrollToSection('locations')" role="menuitem"> מקומות </a>
-      </li>
-      <li role="none">
-        <a href="#ratings" (click)="scrollToSection('ratings')" role="menuitem"> חוות דעת </a>
-      </li>
-      <li role="none">
-        <a href="#contact" (click)="scrollToSection('contact')" role="menuitem"> צור קשר </a>
+      }
+      <li>
+        <div class="mobile-links-social-icons" aria-label="Social Media Links">
+          <a
+            href="https://instagram.com/your-handle"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Follow us on Instagram"
+          >
+            <mat-icon class="instagram-icon">message</mat-icon>
+          </a>
+          <a
+            href="https://wa.me/972528954775"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Contact us on WhatsApp"
+          >
+            <mat-icon class="whatsapp-icon">message</mat-icon>
+          </a>
+        </div>
       </li>
     </ul>
 
     <ul class="desktop-nav-links-right clean-list" role="desktop-menubar">
-      <li role="none">
-        <a href="#home" (click)="scrollToSection('home')" role="menuitem" aria-current="page"> ראשי </a>
+      @for(navLink of navigationLinks | slice:0:3; track navLink) {
+      <li class="mobile-link" role="none">
+        <a href="#{{ navLink.ref }}" (click)="scrollToSection(navLink.ref)" role="menuitem" aria-current="page">
+          {{ navLink.name }}
+        </a>
       </li>
-      <li role="none">
-        <a href="#about" (click)="scrollToSection('about')" role="menuitem"> אודות </a>
-      </li>
-      <li role="none">
-        <a href="#locations" (click)="scrollToSection('locations')" role="menuitem"> מקומות </a>
-      </li>
+      }
     </ul>
 
     <ul class="desktop-nav-links-left clean-list" role="desktop-menubar">
-      <li role="none">
-        <a href="#home" (click)="scrollToSection('home')" role="menuitem" aria-current="page"> ראשי </a>
+      @for(navLink of navigationLinks | slice:3:6; track navLink) {
+      <li class="mobile-link" role="none">
+        <a href="#{{ navLink.ref }}" (click)="scrollToSection(navLink.ref)" role="menuitem" aria-current="page">
+          {{ navLink.name }}
+        </a>
       </li>
-      <li role="none">
-        <a href="#about" (click)="scrollToSection('about')" role="menuitem"> אודות </a>
-      </li>
-      <li role="none">
-        <a href="#locations" (click)="scrollToSection('locations')" role="menuitem"> מקומות </a>
-      </li>
+      }
     </ul>
 
     <button class="hamburger-btn" (click)="toggleMenu()" aria-label="Toggle navigation menu" aria-controls="nav-links">

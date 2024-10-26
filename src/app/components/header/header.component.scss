@@ -1,17 +1,5 @@
-$mobile-to-tablet-breakpoint: 767px;
-$tablet-to-desktop-breakpoint: 1029px;
-// Mixins
-@mixin tablet {
-  @media (min-width: #{$mobile-to-tablet-breakpoint + 1px}) {
-    @content;
-  }
-}
-
-@mixin desktop {
-  @media (min-width: #{$tablet-to-desktop-breakpoint + 1px}) {
-    @content;
-  }
-}
+@import '../../../assets/styles/functions/functions';
+@import '../../../assets/styles/mixins/mixins';
 
 :host {
   header {
@@ -23,7 +11,7 @@ $tablet-to-desktop-breakpoint: 1029px;
     flex-direction: row-reverse;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 30px 0px 30px;
+    padding: rem(20px) rem(30px) rem(0px) rem(30px);
 
     .logo-mobile {
       a {
@@ -39,14 +27,14 @@ $tablet-to-desktop-breakpoint: 1029px;
     }
 
     .social-icons {
-      padding-inline-end: 30px;
+      padding-inline-end: rem(30px);
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: rem(15px);
     }
 
     .phone-container {
-      padding-inline-start: 30px;
+      padding-inline-start: rem(30px);
       .phone-icon {
         transform: rotate(270deg);
       }
@@ -58,12 +46,13 @@ $tablet-to-desktop-breakpoint: 1029px;
 
     // 768px breakpoint
     @include tablet {
-      height: 100px;
-      padding: 0px 60px;
+      height: rem(100px);
+      padding: rem(0px) rem(60px);
 
       .phone-container {
         line-height: 0;
-        padding-inline-start: 0px;
+        padding-inline-start: rem(0px);
+
         .phone-icon {
           display: none;
         }
@@ -75,19 +64,18 @@ $tablet-to-desktop-breakpoint: 1029px;
 
       .social-icons {
         line-height: 0;
-        padding-inline-end: 0px;
+        padding-inline-end: rem(0px);
         flex-direction: row;
-        gap: 20px;
+        gap: rem(20px);
       }
 
       .logo-mobile {
         img {
-          // margin: 30px -70px -40px -25px;
           width: 18%;
           height: auto;
           position: absolute;
           top: 0;
-          max-width: 160px;
+          max-width: rem(160px);
         }
       }
     }
@@ -96,7 +84,7 @@ $tablet-to-desktop-breakpoint: 1029px;
   .nav-container {
     display: flex;
     align-items: center;
-    height: 50px;
+    height: rem(50px);
     background-color: red;
     width: 100%;
 
@@ -105,7 +93,7 @@ $tablet-to-desktop-breakpoint: 1029px;
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 1000; // Ensure it stays above other content
+      z-index: 1000;
     }
 
     .nav-links {
@@ -117,23 +105,50 @@ $tablet-to-desktop-breakpoint: 1029px;
       top: 0;
       right: 0;
       height: 100vh;
-      width: 240px;
+      width: 70%;
       transform: translateX(100%);
       z-index: 5;
       transition: all ease-in-out 0.4s;
 
       &.open {
-        box-shadow: 0px 0px 30px rgb(0 0 0 / 30%);
+        box-shadow: rem(0px) rem(0px) rem(30px) rgb(0 0 0 / 30%);
         transform: translateX(0);
       }
 
-      li {
+      &.mobile-links {
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        padding: rem(0px) rem(30px);
+
+        .close-link {
+          display: flex;
+        }
+
+        .mobile-links-social-icons {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: rem(20px);
+          margin-top: rem(25px);
+        }
+      }
+
+      li.mobile-link {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         text-align: center;
-        padding: 6px 10px;
-        border-bottom: 1px solid #e5e5e52e;
+        padding: rem(20px);
+        border-bottom: rem(1px) solid #e5e5e52e;
         transition: background-color 0.3s;
         font-weight: 400;
-        border-bottom: 1px solid var(--text-color);
+        border-bottom: rem(1px) solid var(--border-color);
+        color: var(--text-color);
+
+        a {
+          font-size: rem(26px);
+        }
       }
     }
 
@@ -145,10 +160,10 @@ $tablet-to-desktop-breakpoint: 1029px;
     .hamburger-btn {
       background-color: transparent;
       border: none;
-      margin-inline-start: 39px;
-      padding: 10px 20px 10px 20px;
+      margin-inline-start: rem(39px);
+      padding: rem(10px) rem(20px) rem(10px) rem(20px);
       color: var(--text-color);
-      border-radius: 10px;
+      border-radius: rem(10px);
     }
 
     @include desktop {
