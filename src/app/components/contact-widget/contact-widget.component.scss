@@ -1,0 +1,20 @@
+@import '../../../assets/styles/functions/functions';
+:host {
+  position: fixed;
+  bottom: rem(20px);
+  left: 10px;
+  z-index: 5;
+  background-color: red;
+  padding: 10px;
+  border-radius: 50%;
+
+  ::ng-deep {
+    .whatsapp-icon {
+      width: em(16px);
+      height: em(16px);
+      position: relative;
+      display: block;
+      font-size: em(40px);
+    }
+  }
+}

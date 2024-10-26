@@ -107,7 +107,7 @@
       height: 100vh;
       width: 70%;
       transform: translateX(100%);
-      z-index: 5;
+      z-index: 15;
       transition: all ease-in-out 0.4s;
 
       &.open {
@@ -206,6 +206,7 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.6s;
+    z-index: 10;
 
     &.open {
       pointer-events: auto;
