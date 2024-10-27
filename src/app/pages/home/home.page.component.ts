@@ -1,9 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { HeroComponent } from '../../components/hero/hero.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [HeroComponent],
   templateUrl: './home.page.component.html',
   styleUrls: ['./home.page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
