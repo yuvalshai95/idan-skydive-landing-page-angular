@@ -96,12 +96,23 @@
     background-color: red;
     width: 100%;
 
+    .fixed-nav-center {
+      display: none;
+    }
+
     &.fixed {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 1000;
+
+      .fixed-nav-center {
+        display: inline;
+        flex-grow: 1;
+        text-align: center;
+        margin-inline-start: rem(70px);
+      }
     }
 
     .nav-links {
