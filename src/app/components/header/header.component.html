@@ -2,22 +2,19 @@
   <div class="screen-overlay" [ngClass]="{ open: isMenuOpen }" (click)="toggleMenu()" aria-hidden="true"></div>
 
   <div class="top-header" role="Main header">
-    <div class="social-icons" aria-label="Social Media Links">
+    <div class="social-icons-container" aria-label="Social Media Links">
       <a
-        href="https://instagram.com/your-handle"
+        *ngFor="let socialEntity of topHeaderSocialEntities | order : 'order'"
+        [href]="socialEntity.ref"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Follow us on Instagram"
+        [attr.aria-label]="socialEntity.ariaLabel"
       >
-        <mat-icon class="instagram-icon">message</mat-icon>
-      </a>
-      <a
-        href="https://wa.me/972528954775"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Contact us on WhatsApp"
-      >
-        <mat-icon class="whatsapp-icon">message</mat-icon>
+        <fa-icon
+          class="icon social-icon"
+          [ngClass]="'social-icon-' + socialEntity.name"
+          [icon]="socialEntity.icon"
+        ></fa-icon>
       </a>
     </div>
 
@@ -28,43 +25,51 @@
     </div>
 
     <div class="phone-container">
-      <a href="tel:+972528954775" class="phone-number-text" aria-label="Call us at 052-895-4775"> 052-895-4775 </a>
-      <mat-icon class="phone-icon" aria-hidden="true">phone</mat-icon>
+      <a href="tel:+972528954775" class="phone-number-link" aria-label="Call us at 052-895-4775">
+        @if (isMobileSize) {
+        <!-- <fa-icon class="icon phone-icon" [icon]="icons.phone"></fa-icon> -->
+        <mat-icon class="icon phone-icon" fontSet="material-symbols-outlined">phone_iphone</mat-icon>
+        } @else {
+        <span class="phone-text">052-895-4775</span>
+        }
+      </a>
     </div>
   </div>
 
   <nav class="nav-container" role="navigation" aria-label="Main navigation">
     <ul class="mobile-links nav-links clean-list" [class.open]="isMenuOpen" role="mobile-menubar">
       <li class="mobile-link close-link" role="none">
-        <span (click)="toggleMenu()">X</span>
+        <mat-icon class="close-link-icon" (click)="toggleMenu()" fontSet="material-symbols-outlined" aria-hidden="true"
+          >close</mat-icon
+        >
       </li>
-      @for(navLink of navigationLinks; track navLink) {
-      <li class="mobile-link" role="none">
+      <li
+        *ngFor="let navLink of navigationLinks | order : 'order'; trackBy: trackByNavLink"
+        class="mobile-link"
+        role="none"
+      >
         <a href="#{{ navLink.ref }}" (click)="scrollToSection(navLink.ref)" role="menuitem" aria-current="page">
           {{ navLink.name }}
         </a>
-        <mat-icon class="link-icon" aria-hidden="true">{{ navLink.icon }}</mat-icon>
+        <mat-icon fontSet="material-symbols-outlined" class="link-icon" aria-hidden="true">{{ navLink.icon }}</mat-icon>
       </li>
-      }
-      <li>
+      <li class="mobile-links-footer">
         <div class="mobile-links-social-icons" aria-label="Social Media Links">
           <a
-            href="https://instagram.com/your-handle"
+            *ngFor="let socialEntity of topHeaderSocialEntities | order : 'order'"
+            [href]="socialEntity.ref"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Follow us on Instagram"
+            [attr.aria-label]="socialEntity.ariaLabel"
           >
-            <mat-icon class="instagram-icon">message</mat-icon>
-          </a>
-          <a
-            href="https://wa.me/972528954775"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Contact us on WhatsApp"
-          >
-            <mat-icon class="whatsapp-icon">message</mat-icon>
+            <fa-icon
+              class="icon social-icon"
+              [ngClass]="'social-icon-' + socialEntity.name"
+              [icon]="socialEntity.icon"
+            ></fa-icon>
           </a>
         </div>
+        <span class="mobile-links-text">בוא נקפוץ ביחד!</span>
       </li>
     </ul>
 

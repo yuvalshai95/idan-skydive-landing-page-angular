@@ -1,20 +1,26 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
   afterNextRender,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   HostListener,
+  inject,
   OnInit,
+  PLATFORM_ID,
   ViewChild,
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { NAVIGATION_LINKS } from '../../constant/nvaigation-links';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { OrderPipe } from '../../pipes/order.pipe';
+import { TOP_HEADER_SOCIAL_ENTITIES } from '../../constant/icons';
+import { faMobileScreen } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, MatIconModule],
+  imports: [CommonModule, MatIconModule, FontAwesomeModule, OrderPipe],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,8 +28,14 @@ import { NAVIGATION_LINKS } from '../../constant/nvaigation-links';
 export class HeaderComponent implements OnInit {
   public isMenuOpen: boolean = false;
   public navigationLinks = structuredClone(NAVIGATION_LINKS);
+  public topHeaderSocialEntities = structuredClone(TOP_HEADER_SOCIAL_ENTITIES);
+  public isMobileSize: boolean = false;
+  public icons = {
+    phone: faMobileScreen,
+  };
 
   private topHeaderHeight: number;
+  private platformId = inject(PLATFORM_ID);
 
   @ViewChild('home') homeSection!: ElementRef;
 
@@ -34,10 +46,15 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    // calculate if the screen size is mobile or tablet size (desktop is 1030px)
+    this.checkScreenSize();
+  }
 
-  public toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    // Update the screen size check on resize
+    this.checkScreenSize();
   }
 
   @HostListener('window:scroll', [])
@@ -53,6 +70,28 @@ export class HeaderComponent implements OnInit {
       navContainer.classList.remove('fixed');
       mainEl.style.marginTop = '0px';
     }
+  }
+
+  private checkScreenSize(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isMobileSize = window.innerWidth < 768;
+    }
+  }
+
+  public trackByNavLink(
+    index: number,
+    navLink: {
+      name: string;
+      order: number;
+      ref: string;
+      icon: string;
+    }
+  ): string {
+    return navLink.ref;
+  }
+
+  public toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 
   public scrollToSection(sectionId: string) {

@@ -1,20 +1,18 @@
 @import '../../../assets/styles/functions/functions';
-:host {
-  position: fixed;
-  bottom: rem(20px);
-  left: 10px;
-  z-index: 5;
-  background-color: red;
-  padding: 10px;
-  border-radius: 50%;
 
-  ::ng-deep {
+:host {
+  .widget-icon {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+
     .whatsapp-icon {
-      width: em(16px);
-      height: em(16px);
-      position: relative;
-      display: block;
-      font-size: em(40px);
+      height: 85px;
+      width: 85px;
     }
   }
 }
