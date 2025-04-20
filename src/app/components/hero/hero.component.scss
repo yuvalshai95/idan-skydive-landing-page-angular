@@ -1,0 +1,98 @@
+@import '../../../assets/styles/functions/functions';
+@import '../../../assets/styles/mixins/mixins';
+
+@keyframes float-up-20 {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-20px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+:host {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+
+  .hero-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: rem(10px);
+    height: 100%; /* You must set a specified height */
+    background-image: url('../../../assets/images/hero-background.png');
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+
+    @include tablet {
+      flex-direction: row-reverse;
+      padding-bottom: 15%;
+      gap: rem(80px);
+    }
+
+    @include desktop {
+      gap: 0px;
+    }
+  }
+
+  .hero-cloud-divider {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+    position: absolute;
+    bottom: -11%;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    height: 35%;
+    pointer-events: none;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: rem(60px);
+
+    .hero-text {
+      font-size: rem(32px);
+    }
+    .cta-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: rem(250px);
+      font-size: rem(24px);
+      padding: rem(15px);
+      cursor: pointer;
+      background-color: rgb(234, 67, 53);
+      color: white;
+      font-weight: 600;
+      border-radius: rem(15px);
+      //   animation: top 1s ease-in-out;
+      //   transition: transform 0.3s;
+    }
+  }
+
+  .hero-right {
+    display: flex;
+    justify-content: center;
+
+    .hero-main-subject {
+      max-width: 400px;
+      max-height: 400px;
+      animation: float-up-20 3s ease-in-out infinite;
+
+      @include desktop {
+        max-width: initial;
+        max-height: initial;
+      }
+    }
+  }
+}

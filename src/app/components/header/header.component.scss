@@ -6,6 +6,14 @@
     width: 100%;
   }
 
+  ::ng-deep {
+    .mat-icon {
+      &.link-icon {
+        overflow: initial;
+      }
+    }
+  }
+
   .top-header {
     display: flex;
     flex-direction: row-reverse;
@@ -109,9 +117,12 @@
 
       .fixed-nav-center {
         display: inline;
-        flex-grow: 1;
-        text-align: center;
-        margin-inline-start: rem(70px);
+        // flex-grow: 1;
+        // text-align: center;
+        position: fixed;
+        top: 3%;
+        left: 49%;
+        transform: translate(-50%, -50%);
       }
     }
 
