@@ -3,19 +3,17 @@
 
   <div class="top-header" role="Main header">
     <div class="social-icons-container" aria-label="Social Media Links">
+      @for (socialEntity of topHeaderSocialEntities | order : 'order'; track socialEntity.name) {
       <a
-        *ngFor="let socialEntity of topHeaderSocialEntities | order : 'order'"
         [href]="socialEntity.ref"
         target="_blank"
         rel="noopener noreferrer"
         [attr.aria-label]="socialEntity.ariaLabel"
       >
-        <fa-icon
-          class="icon social-icon"
-          [ngClass]="'social-icon-' + socialEntity.name"
-          [icon]="socialEntity.icon"
-        ></fa-icon>
+          <fa-icon class="icon social-icon" [ngClass]="'social-icon-' + socialEntity.name" [icon]="socialEntity.icon">
+          </fa-icon>
       </a>
+      }
     </div>
 
     <div class="logo-mobile">
@@ -45,18 +43,17 @@
       </li>
       <li
         *ngFor="let navLink of navigationLinks | order : 'order'; trackBy: trackByNavLink"
-        class="mobile-link"
-        role="none"
+        class="mobile-link" role="none"
       >
         <a href="#{{ navLink.ref }}" (click)="scrollToSection(navLink.ref)" role="menuitem" aria-current="page">
           {{ navLink.name }}
         </a>
         <mat-icon fontSet="material-symbols-outlined" class="link-icon" aria-hidden="true">{{ navLink.icon }}</mat-icon>
       </li>
-      <li class="mobile-links-footer">
+      <li class="mobile-links-footer" >
         <div class="mobile-links-social-icons" aria-label="Social Media Links">
+          @for (socialEntity of topHeaderSocialEntities | order : 'order'; track socialEntity.name) {
           <a
-            *ngFor="let socialEntity of topHeaderSocialEntities | order : 'order'"
             [href]="socialEntity.ref"
             target="_blank"
             rel="noopener noreferrer"
@@ -66,15 +63,19 @@
               class="icon social-icon"
               [ngClass]="'social-icon-' + socialEntity.name"
               [icon]="socialEntity.icon"
+              
+              
+            
             ></fa-icon>
           </a>
+        }
         </div>
         <span class="mobile-links-text">בוא נקפוץ ביחד!</span>
       </li>
     </ul>
 
     <ul class="desktop-nav-links-right clean-list" role="desktop-menubar">
-      @for(navLink of navigationLinks | slice:0:3; track navLink) {
+      @for(navLink of navigationLinks | slice:0:3; track navLink.name) {
       <li class="mobile-link" role="none">
         <a href="#{{ navLink.ref }}" (click)="scrollToSection(navLink.ref)" role="menuitem" aria-current="page">
           {{ navLink.name }}
@@ -84,7 +85,7 @@
     </ul>
 
     <ul class="desktop-nav-links-left clean-list" role="desktop-menubar">
-      @for(navLink of navigationLinks | slice:3:6; track navLink) {
+      @for(navLink of navigationLinks | slice:3:6; track navLink.name) {
       <li class="mobile-link" role="none">
         <a href="#{{ navLink.ref }}" (click)="scrollToSection(navLink.ref)" role="menuitem" aria-current="page">
           {{ navLink.name }}
